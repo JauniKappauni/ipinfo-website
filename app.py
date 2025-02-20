@@ -5,9 +5,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    ipv4 = request.remote_addr
+    ip = request.headers.get("Cf-Connecting-Ip")
+    print(request.headers)
 
-    return render_template("index.html",ipv4=ipv4)
+    return render_template("index.html",ip=ip)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=20010, debug=True)
